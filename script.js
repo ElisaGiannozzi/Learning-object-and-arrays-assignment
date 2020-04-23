@@ -31,29 +31,35 @@ for(let item of groceriesList){
 
 //Function for adding a purchase to the list.
 
-function addToList(product, amount, isBought){
-    let newProduct = {product: product, amount: amount, isBought: isBought}; 
+function addToList(newGroceriesList){
     for(let item of groceriesList) {
-        if (item.product === newProduct.product) {
-            item.amount += newProduct.amount; 
-        } else {
-            groceriesList.push(newProduct); 
-        }
+        if (item.product == newGroceriesList.product) {
+            item.amount += newGroceriesList.amount; 
+            return groceriesList; 
+        } 
+    groceriesList.push(newGroceriesList); 
+    return groceriesList; 
     }
 }
 
-addToList("bag of candy", 2, false); 
+addToList({product:'bag of candy', amount: 2, isBought: false}); 
 console.log(groceriesList); 
+
 
 //Function for purchasing a product
 
 function buyProduct(product){
     for(let item of groceriesList) {
         if(item.isBought === false) {
-            return item.isBought === true; 
+            item.isBought === true; 
+            return groceriesList; 
         }
     }
 }
+
+
+buyProduct({product:'bag of flour'}); 
+console.log(groceriesList); 
 
 
 
