@@ -15,12 +15,12 @@ let groceriesList = [
     {
         product: 'bag of sugar', 
         amount: 1, 
-        isBought: true
+        isBought: false
     }, 
     {
         product: 'carton of milk', 
         amount: 1, 
-        isBought: true
+        isBought: false
     }]; 
 
 //Function for displaying the entire list; 
@@ -48,18 +48,16 @@ console.log(groceriesList);
 
 //Function for purchasing a product
 
-function buyProduct(product){
-    for(let item of groceriesList) {
-        if(item.isBought === false) {
-            item.isBought === true; 
-            return groceriesList; 
+function buyProduct(inputGroceriesList, product){
+    for(let item of inputGroceriesList) {
+        if((item.product === product) && (item.isBought === false)) {
+            item.isBought = true; 
         }
     }
+    return inputGroceriesList; 
 }
 
-
-buyProduct({product:'bag of flour'}); 
-console.log(groceriesList); 
+console.log(buyProduct(groceriesList, 'bag of flour')); 
 
 
 
@@ -112,13 +110,22 @@ console.log(classroomByFaculty);
 
 //Display only the classrooms that would fit a given group
 
-function seeIfItFits(group) {
-    for(let item of classrooms) {
-        if ((classrooms.seats >= group.seats) && (classrooms.faculty === group.faculty)){
-            return item; 
+function seeIfItFits(inputClassrooms, inputGroup) {
+    let outPutClassrooms = [];
+    for(let item of inputClassrooms) {
+        if ((item.seats >= inputGroup.seats) && (item.faculty === inputGroup.faculty)){
+            outPutClassrooms.push(item); 
         }
     }
+    return outPutClassrooms; 
 }
 
+let newGroup = {
+    name: 'students', 
+    seats: 29, 
+    faculty: 'physics'
+}; 
+
+console.log(seeIfItFits(classrooms, newGroup)); 
 
 
